@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Fetch Code') {
+            steps {
+                git branch: 'main', url: 'https://github.com/krishnakishore1408/git-demo-latest1.git'
+            }
+        }
+        
+    
+        stage('Installing Apache') {
+            steps {
+                sh 'sudo apt install apache2 -y'
+            }
+        }
+        
+          stage('Deploying APP') {
+            steps {
+                sh 'sudo cp -R * /var/www/html/'
+            }
+        }
+        
+    }
+    
+}
